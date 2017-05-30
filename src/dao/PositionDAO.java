@@ -2,12 +2,11 @@ package dao;
 
 import java.util.List;
 
+import model.Position;
+import util.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
-import model.Position;
-import util.HibernateUtil;
 
 public class PositionDAO {
 	public void insert(Position position) {

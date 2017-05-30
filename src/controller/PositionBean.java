@@ -1,11 +1,10 @@
 package controller;
 
-import model.Position;
 import util.FacesUtil;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-
+import model.Position;
 import dao.PositionDAO;
+import javax.faces.bean.ViewScoped;
+import javax.faces.bean.ManagedBean;
 
 @ManagedBean
 @ViewScoped
