@@ -8,6 +8,8 @@
 
 	<ui:composition template="/templates/model.xhtml">
 		<ui:define name="content">
+			<f:event listener="#{positionBean.fetchAll}" type="preRenderView" />
+						
 			<h:form>
 				<p:toolbar>
 					<f:facet name="left">
@@ -22,13 +24,13 @@
 					<p:commandButton value="Novo" action="/pages/position/post.xhtml?faces-redirect=true"/>
 				</h:panelGrid>
 				
-				<p:dataTable emptyMessage="Nenhum registro encontrado.">
-					<p:column headerText="Código">
-					
+				<p:dataTable emptyMessage="Nenhum registro encontrado." value="#{positionBean.positions}" var="position" rows="10" paginator="true">
+					<p:column headerText="Código" sortBy="#{position.id}">
+						<h:outputText value="#{position.id}" />
 					</p:column>
 					
-					<p:column headerText="Descrição">
-					
+					<p:column headerText="Descrição" sortBy="#{position.description}">
+						<h:outputText value="#{position.description}"/>
 					</p:column>
 				</p:dataTable>
 			</h:form>

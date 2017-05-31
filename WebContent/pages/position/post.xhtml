@@ -9,6 +9,12 @@
 	<ui:composition template="/templates/model.xhtml">
 		<ui:define name="content">
 			<h:form>
+				 <p:toolbar>
+					<f:facet name="left">
+						<h:outputText value="Cargo"/>
+					</f:facet>
+				 </p:toolbar>
+				
 				 <h:panelGrid columns="2">
 				 	<p:outputLabel value="Código" />
 				 	<p:inputText maxlength="10" readonly="true" size="30" value="#{positionBean.position.id}"/>

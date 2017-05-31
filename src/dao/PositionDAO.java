@@ -33,7 +33,7 @@ public class PositionDAO {
 		List<Position> positions = null;
 
 		try {
-			Query query = session.createQuery("from position");
+			Query query = session.createQuery("from Position p");
 			positions = query.list();
 		} catch (RuntimeException ex) {
 			throw ex;
