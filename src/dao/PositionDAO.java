@@ -27,6 +27,39 @@ public class PositionDAO {
 		}
 	}
 	
+	public void update(Position position) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+
+		Transaction transaction = null;
+		try {
+			transaction = session.beginTransaction();
+			session.update(position);
+			transaction.commit();
+		} catch (RuntimeException ex) {
+			if (transaction != null) {
+				transaction.rollback();	
+			}
+			
+		} finally {
+			session.close();
+		}
+	}
+
+	public Position find(int id){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+
+		Position position;
+		
+		try {
+			position = (Position) session.load(Position.class, id);
+		} catch (RuntimeException ex) {
+			throw ex;
+		} finally {
+			session.close();
+		}
+		return position;
+	}
+
 	@SuppressWarnings("unchecked")
 	public List<Position> fetchAll() {
 		Session session = HibernateUtil.getSessionFactory().openSession();

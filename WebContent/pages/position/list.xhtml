@@ -7,9 +7,12 @@
 	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">	
 
 	<ui:composition template="/templates/model.xhtml">
-		<ui:define name="content">
-			<f:event listener="#{positionBean.fetchAll}" type="preRenderView" />
-						
+		<ui:define name="metadata">
+			<f:metadata>
+				<f:event listener="#{positionBean.fetchAll}" type="preRenderView" />
+			</f:metadata>
+		</ui:define>
+		<ui:define name="content">						
 			<h:form>
 				<p:toolbar>
 					<f:facet name="left">
@@ -31,6 +34,12 @@
 					
 					<p:column headerText="Descrição" sortBy="#{position.description}">
 						<h:outputText value="#{position.description}"/>
+					</p:column>
+					
+					<p:column>
+						<p:commandButton value="Editar" action="/pages/position/post.xhtml?faces-redirect=true">
+							<f:param name="id" value="#{position.id}"></f:param>
+						</p:commandButton>
 					</p:column>
 				</p:dataTable>
 			</h:form>

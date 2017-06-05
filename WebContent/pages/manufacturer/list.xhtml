@@ -7,9 +7,12 @@
 	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">	
 
 	<ui:composition template="/templates/model.xhtml">
-		<ui:define name="content">
-			<f:event listener="#{manufacturerBean.fetchAll}" type="preRenderView" />
-						
+		<ui:define name="metadata">
+			<f:metadata>
+				<f:event listener="#{manufacturerBean.fetchAll}" type="preRenderView" />
+			</f:metadata>			
+		</ui:define>
+		<ui:define name="content">						
 			<h:form>
 				<p:toolbar>
 					<f:facet name="left">
@@ -31,6 +34,12 @@
 					
 					<p:column headerText="Nome" sortBy="#{manufacturer.description}">
 						<h:outputText value="#{manufacturer.description}" />
+					</p:column>
+					
+					<p:column>
+						<p:button value="Editar" outcome="/pages/manufacturer/post.xhtml">
+							<f:param name="id" value="#{manufacturer.id}" />
+						</p:button>
 					</p:column>
 				</p:dataTable>
 			</h:form>

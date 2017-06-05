@@ -48,6 +48,21 @@ public class ManufacturerBean {
 		}
 	}
 	
+	public void findOne(){
+		try {
+		   String id = FacesUtil.getParam("id");
+		
+			//if (id != null){
+			//	this.manufacturer = this.manufacturerDAO.find(Integer.parseInt(id));	
+			//}
+			
+			FacesUtil.addMessageInfo(id);
+
+		} catch (Exception e) {
+			FacesUtil.addMessageInfo("nâo foi possível carregar");
+		}
+	}
+	
 	public void fetchAll(){
 		try {
 			this.manufacturers = manufacturerDAO.fetchAll();
