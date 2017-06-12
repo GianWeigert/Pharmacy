@@ -19,8 +19,8 @@ public class Position {
 	@Column(name = "id", nullable = false)
 	private int id;
 	
-	@NotEmpty(message = "O campo descrição não pode ser nulo")
-	@Size(min = 3, max = 100, message = "O campo descrição deve estar entre 3 e 100 caracteres")
+	@NotEmpty(message = "O campo descrição não pode ser vazio")
+	@Size(min = 3, max = 100, message = "O campo descrição deve conter entre 3 e 100 caracteres")
 	@Column(name = "description",length = 255, nullable = false)
 	private String description;
 

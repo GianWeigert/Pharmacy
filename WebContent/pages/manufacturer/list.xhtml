@@ -20,13 +20,10 @@
 					</f:facet>
 				</p:toolbar>
 				
-				<h:panelGrid columns="4">
-					<p:outputLabel value="Descrição" />
-					<p:inputText maxlength="50" size="30" />
-					<p:commandButton value="Buscar" />
-					<p:commandButton value="Novo" action="/pages/manufacturer/post.xhtml?faces-redirect=true"/>
-				</h:panelGrid>
-				
+				<p:button value="Novo" outcome="/pages/manufacturer/post.xhtml?faces-redirect=true">
+					<f:param name="action" value="new" />
+				</p:button>
+									
 				<p:dataTable emptyMessage="Nenhum registro encontrado." value="#{manufacturerBean.manufacturers}" var="manufacturer" rows="10" paginator="true">
 					<p:column headerText="Código" sortBy="#{manufacturer.id}">
 						<h:outputText value="#{manufacturer.id}" />
@@ -39,6 +36,7 @@
 					<p:column>
 						<p:button value="Editar" outcome="/pages/manufacturer/post.xhtml">
 							<f:param name="id" value="#{manufacturer.id}" />
+							<f:param name="action" value="edit" />
 						</p:button>
 					</p:column>
 				</p:dataTable>

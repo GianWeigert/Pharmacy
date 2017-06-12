@@ -28,16 +28,17 @@
 			<h:form>
 				<p:panelMenu>
 					<p:submenu label="Cargo">
-						  <p:menuitem value="Listagem" outcome="/pages/position/list.xhtml" />
- 						  <p:menuitem value="Cadastrar" outcome="/pages/position/post.xhtml" />						  
+						<p:menuitem value="Listagem" outcome="/pages/position/list.xhtml" />
+ 						<p:menuitem value="Cadastrar" outcome="/pages/position/post.xhtml" >
+ 							<f:param name="action" value="new" />
+ 						</p:menuitem>						  
 	 				</p:submenu>
-					
-					<p:submenu label="Usuário">
-					</p:submenu>
-					
+				
 					<p:submenu label="Fabricante">
-						  <p:menuitem value="Listagem" outcome="/pages/manufacturer/list.xhtml" />
- 						  <p:menuitem value="Cadastrar" outcome="/pages/manufacturer/post.xhtml" />						  
+						<p:menuitem value="Listagem" outcome="/pages/manufacturer/list.xhtml" />
+ 						<p:menuitem value="Cadastrar" outcome="/pages/manufacturer/post.xhtml" >
+							<f:param name="action" value="new" />					  	
+ 						</p:menuitem>						  
 	 				</p:submenu>
 				</p:panelMenu>
 			</h:form>

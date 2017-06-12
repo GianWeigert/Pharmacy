@@ -13,6 +13,7 @@ public class ManufacturerBean {
 	Manufacturer manufacturer = new Manufacturer();
 	ManufacturerDAO manufacturerDAO = new ManufacturerDAO();
 	List<Manufacturer> manufacturers = null;
+	String action;
 	
 	public Manufacturer getManufacturer() {
 		return manufacturer;
@@ -37,6 +38,14 @@ public class ManufacturerBean {
 	public void setManufacturers(List<Manufacturer> manufacturers) {
 		this.manufacturers = manufacturers;
 	}
+	
+	public String getAction() {
+		return action;
+	}
+
+	public void setAction(String action) {
+		this.action = action;
+	}
 
 	public void save(){
 		try {
@@ -48,15 +57,26 @@ public class ManufacturerBean {
 		}
 	}
 	
+	public void edit(){
+		try {
+			this.manufacturerDAO.update(manufacturer);
+
+			FacesUtil.addMessageInfo("Cargo alterado com sucesso");
+		} catch (Exception e) {
+			FacesUtil.addMessageInfo("Não foi possível salvar");
+		}
+	}
+	
 	public void findOne(){
 		try {
-			String id = FacesUtil.getParam("id");
-		
+			this.action = FacesUtil.getParam("action");
+			String id   = FacesUtil.getParam("id");
+
 			if (id != null){
 				this.manufacturer = this.manufacturerDAO.find(Integer.parseInt(id));	
 			}
 		} catch (Exception e) {
-			FacesUtil.addMessageInfo("n�o foi poss�vel carregar");
+			FacesUtil.addMessageInfo("não foi possível carregar");
 		}
 	}
 	
