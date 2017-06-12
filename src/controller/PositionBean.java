@@ -15,6 +15,7 @@ public class PositionBean {
 	Position position = new Position();
 	PositionDAO positionDAO = new PositionDAO();
 	List<Position> positions = null;
+	String action;
 	
 	public Position getPosition() {
 		return position;
@@ -33,6 +34,22 @@ public class PositionBean {
 		this.positions = positions;
 	}
 
+	public PositionDAO getPositionDAO() {
+		return positionDAO;
+	}
+
+	public void setPositionDAO(PositionDAO positionDAO) {
+		this.positionDAO = positionDAO;
+	}
+
+	public String getAction() {
+		return action;
+	}
+
+	public void setAction(String action) {
+		this.action = action;
+	}
+
 	public void save(){
 		try {
 			this.positionDAO.insert(position);
@@ -40,6 +57,30 @@ public class PositionBean {
 			FacesUtil.addMessageInfo("Cargo salvo com sucesso");
 		} catch (Exception e) {
 			FacesUtil.addMessageInfo("Não foi possível salvar");
+		}
+	}
+	
+	public void edit(){
+		try {
+			this.positionDAO.update(position);
+
+			FacesUtil.addMessageInfo("Cargo alterado com sucesso");
+		} catch (Exception e) {
+			FacesUtil.addMessageInfo("Não foi possível salvar");
+		}
+	}
+	
+	public void findOne(){
+		try {
+			this.action = FacesUtil.getParam("action");
+			String id   = FacesUtil.getParam("id");
+		
+			if (id != null){
+				this.position = this.positionDAO.find(Integer.parseInt(id));	
+			}
+		} catch (Exception e) {
+			
+			FacesUtil.addMessageInfo("não foi possível carregar");
 		}
 	}
 	

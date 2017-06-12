@@ -20,12 +20,11 @@
 					</f:facet>
 				</p:toolbar>
 				
-				<h:panelGrid columns="4">
-					<p:outputLabel value="Descrição" />
-					<p:inputText maxlength="50" size="30" />
-					<p:commandButton value="Buscar" />
-					<p:commandButton value="Novo" action="/pages/position/post.xhtml?faces-redirect=true"/>
-				</h:panelGrid>
+				
+				
+					<f:facet name="footer">
+						<h:outputText value="Cargo"/>
+					</f:facet>
 				
 				<p:dataTable emptyMessage="Nenhum registro encontrado." value="#{positionBean.positions}" var="position" rows="10" paginator="true">
 					<p:column headerText="Código" sortBy="#{position.id}">
@@ -37,11 +36,17 @@
 					</p:column>
 					
 					<p:column>
-						<p:commandButton value="Editar" action="/pages/position/post.xhtml?faces-redirect=true">
-							<f:param name="id" value="#{position.id}"></f:param>
-						</p:commandButton>
+						<p:button value="Editar" outcome="/pages/position/post.xhtml?faces-redirect=true">
+							<f:param name="id" value="#{position.id}" />
+							<f:param name="action" value="edit"/>						
+						</p:button>
 					</p:column>
 				</p:dataTable>
+				
+				
+				<p:button value="Novo" outcome="/pages/position/post.xhtml?faces-redirect=true">
+					<f:param name="action" value="new"/>
+				</p:button>
 			</h:form>
 		</ui:define>
 	</ui:composition>

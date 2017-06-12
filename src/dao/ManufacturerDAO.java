@@ -50,7 +50,7 @@ public class ManufacturerDAO {
 		Manufacturer manufacturer;
 		
 		try {
-			manufacturer = (Manufacturer) session.load(Manufacturer.class, id);
+			manufacturer = (Manufacturer) session.get(Manufacturer.class, id);
 		} catch (RuntimeException ex) {
 			throw ex;
 		} finally {

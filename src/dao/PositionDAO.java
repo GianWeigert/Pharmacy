@@ -49,14 +49,14 @@ public class PositionDAO {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 
 		Position position;
-		
 		try {
-			position = (Position) session.load(Position.class, id);
+			position = (Position) session.get(Position.class, id);
 		} catch (RuntimeException ex) {
 			throw ex;
 		} finally {
 			session.close();
 		}
+		
 		return position;
 	}
 

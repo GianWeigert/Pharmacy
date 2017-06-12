@@ -50,16 +50,13 @@ public class ManufacturerBean {
 	
 	public void findOne(){
 		try {
-		   String id = FacesUtil.getParam("id");
+			String id = FacesUtil.getParam("id");
 		
-			//if (id != null){
-			//	this.manufacturer = this.manufacturerDAO.find(Integer.parseInt(id));	
-			//}
-			
-			FacesUtil.addMessageInfo(id);
-
+			if (id != null){
+				this.manufacturer = this.manufacturerDAO.find(Integer.parseInt(id));	
+			}
 		} catch (Exception e) {
-			FacesUtil.addMessageInfo("nâo foi possível carregar");
+			FacesUtil.addMessageInfo("nï¿½o foi possï¿½vel carregar");
 		}
 	}
 	
