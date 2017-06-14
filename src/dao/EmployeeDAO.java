@@ -50,7 +50,7 @@ public class EmployeeDAO {
 		Employee employee;
 		
 		try {
-			employee = (Employee) session.load(Employee.class, id);
+			employee = (Employee) session.get(Employee.class, id);
 		} catch (RuntimeException ex) {
 			throw ex;
 		} finally {

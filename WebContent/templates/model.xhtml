@@ -41,6 +41,13 @@
  						</p:menuitem>						  
 	 				</p:submenu>
 	 				
+					<p:submenu label="Funcionário">
+						<p:menuitem value="Listagem" outcome="/pages/employee/list.xhtml" />
+ 						<p:menuitem value="Cadastrar" outcome="/pages/employee/post.xhtml" >
+							<f:param name="action" value="new" />					  	
+ 						</p:menuitem>						  
+	 				</p:submenu>
+	 				
 					<p:submenu label="Produto">
 						<p:menuitem value="Listagem" outcome="/pages/product/list.xhtml" />
  						<p:menuitem value="Cadastrar" outcome="/pages/product/post.xhtml" >

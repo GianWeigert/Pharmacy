@@ -2,6 +2,11 @@ package model;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,18 +23,25 @@ public class Employee {
 	@Column(name = "id", nullable = false)
 	private int id;
 	
+	@NotEmpty(message = "O campo nome não pode estar vazio.")
+	@Size(min = 3, max = 100, message = "O campo nome deve conter entre 3 e 100 caracteres.")
 	@Column(name = "name", length = 255, nullable = false)
 	private String name;
 	
+	@NotEmpty(message = "O campo CPF não pode estar vazio.")
+	@Size(min = 14, max = 14, message = "O CPF deve conter 14 caracteres.")
 	@Column(name = "cpf", length = 14, nullable = false)
 	private String cpf;
 	
+	@NotEmpty(message = "O campo senha não pode estar vazio.")
+	@Size(min = 6, max = 14, message = "O campo senha deve conter no mínimo 6 caracteres.")
 	@Column(name = "password", length = 255, nullable = false)
 	private String password;
 	
+	@NotNull(message = "Selecione um cargo para este funcionário.")
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "positionId", referencedColumnName = "id", nullable = false)
-	private Position postion;
+	private Position position;
 
 	public int getId() {
 		return id;
@@ -63,12 +75,12 @@ public class Employee {
 		this.password = password;
 	}
 
-	public Position getPostion() {
-		return postion;
+	public Position getPosition() {
+		return position;
 	}
 
-	public void setPostion(Position postion) {
-		this.postion = postion;
+	public void setPosition(Position position) {
+		this.position = position;
 	}
 
 	@Override
