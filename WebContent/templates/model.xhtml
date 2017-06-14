@@ -20,10 +20,7 @@
 	<p:layout fullPage="true">
 		<p:layoutUnit header="Farmácia" position="north" resizable="false" closable="false" collapsed="false">
 		</p:layoutUnit>
-
-		<p:layoutUnit header="Footer" position="south" resizable="false" closable="false" collapsed="false">
-		</p:layoutUnit>
-
+		
 		<p:layoutUnit position="west" size="250" resizable="false" closable="false" collapsed="false">
 			<h:form>
 				<p:panelMenu>
@@ -51,6 +48,13 @@
 					<p:submenu label="Produto">
 						<p:menuitem value="Listagem" outcome="/pages/product/list.xhtml" />
  						<p:menuitem value="Cadastrar" outcome="/pages/product/post.xhtml" >
+							<f:param name="action" value="new" />					  	
+ 						</p:menuitem>						  
+	 				</p:submenu>
+	 				
+					<p:submenu label="Venda">
+						<p:menuitem value="Listagem de Vendas" outcome="/pages/sale/list.xhtml" />
+ 						<p:menuitem value="Nova Venda" outcome="/pages/sale/post.xhtml" >
 							<f:param name="action" value="new" />					  	
  						</p:menuitem>						  
 	 				</p:submenu>
