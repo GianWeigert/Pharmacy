@@ -1,7 +1,6 @@
 package model;
 
 import java.math.BigDecimal;
-
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Column;
@@ -11,6 +10,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "product")
@@ -20,12 +24,18 @@ public class Product {
 	@Column(name = "id")
 	private Long id;
 	
+	@NotEmpty(message = "O campo descrição não pode estar vazio.")
+	@Size(min = 3, max = 100, message = "O campo descrição deve conter entre 3 e 100 caracterers.")
 	@Column(name = "description", length = 255, nullable = false)
-	private String discription;
+	private String description;
 	
+	@NotNull(message = "O campo price não pode ser nulo")
+	@DecimalMin(value = "0.00", message = "O preço não pode ser menor que 0. ")
+	@DecimalMax(value = "99999.99", message = "O preço deve estar abaixo de 100.000.")
 	@Column(name = "price", precision = 7, scale = 2, nullable = false)
 	private BigDecimal price;
 	
+	@NotNull(message = "O campo fabricante é obrigatório")
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "manufacurerId", referencedColumnName = "id", nullable = false)
 	private Manufacturer manufacturer;
@@ -38,12 +48,12 @@ public class Product {
 		this.id = id;
 	}
 
-	public String getDiscription() {
-		return discription;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDiscription(String discription) {
-		this.discription = discription;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public BigDecimal getPrice() {

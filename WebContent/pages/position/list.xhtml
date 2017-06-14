@@ -12,6 +12,7 @@
 				<f:event listener="#{positionBean.fetchAll}" type="preRenderView" />
 			</f:metadata>
 		</ui:define>
+		
 		<ui:define name="content">						
 			<h:form>
 				<p:toolbar>
@@ -33,7 +34,7 @@
 						<h:outputText value="#{position.description}"/>
 					</p:column>
 					
-					<p:column>
+					<p:column headerText="Opções">
 						<p:button value="Editar" outcome="/pages/position/post.xhtml?faces-redirect=true">
 							<f:param name="id" value="#{position.id}" />
 							<f:param name="action" value="edit"/>						

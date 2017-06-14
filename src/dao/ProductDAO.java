@@ -1,22 +1,20 @@
 package dao;
 
+import model.Product;
 import java.util.List;
-
+import util.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import model.Product;
-import util.HibernateUtil;
-
 public class ProductDAO {
-	public void insert(Product position) {
+	public void insert(Product product) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
-			session.save(position);
+			session.save(product);
 			transaction.commit();
 		} catch (RuntimeException ex) {
 			if (transaction != null) {
@@ -26,6 +24,40 @@ public class ProductDAO {
 		} finally {
 			session.close();
 		}
+	}
+	
+
+	public void update(Product product) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+
+		Transaction transaction = null;
+		try {
+			transaction = session.beginTransaction();
+			session.update(product);
+			transaction.commit();
+		} catch (RuntimeException ex) {
+			if (transaction != null) {
+				transaction.rollback();	
+			}
+			
+		} finally {
+			session.close();
+		}
+	}
+
+	public Product find(Long id){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+
+		Product product;
+		try {
+			product = (Product) session.get(Product.class, id);
+		} catch (RuntimeException ex) {
+			throw ex;
+		} finally {
+			session.close();
+		}
+		
+		return product;
 	}
 	
 	@SuppressWarnings("unchecked")

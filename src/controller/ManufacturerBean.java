@@ -10,8 +10,8 @@ import javax.faces.bean.ManagedBean;
 @ManagedBean
 @ViewScoped
 public class ManufacturerBean {
-	Manufacturer manufacturer = new Manufacturer();
-	ManufacturerDAO manufacturerDAO = new ManufacturerDAO();
+	Manufacturer manufacturer        = new Manufacturer();
+	ManufacturerDAO manufacturerDAO  = new ManufacturerDAO();
 	List<Manufacturer> manufacturers = null;
 	String action;
 	
@@ -51,9 +51,9 @@ public class ManufacturerBean {
 		try {
 			this.manufacturerDAO.insert(manufacturer);
 			
-			FacesUtil.addMessageInfo("Cargo salvo com sucesso");
+			FacesUtil.addMessageInfo("Fabricante salvo com sucesso.");
 		} catch (Exception e) {
-			FacesUtil.addMessageInfo("Não foi possível salvar");
+			FacesUtil.addMessageInfo("Não foi possível salvar o fabricante.");
 		}
 	}
 	
@@ -61,9 +61,9 @@ public class ManufacturerBean {
 		try {
 			this.manufacturerDAO.update(manufacturer);
 
-			FacesUtil.addMessageInfo("Cargo alterado com sucesso");
+			FacesUtil.addMessageInfo("Fabricante alterado com sucesso.");
 		} catch (Exception e) {
-			FacesUtil.addMessageInfo("Não foi possível salvar");
+			FacesUtil.addMessageInfo("Não foi possível alterar o fabricante.");
 		}
 	}
 	
@@ -76,7 +76,7 @@ public class ManufacturerBean {
 				this.manufacturer = this.manufacturerDAO.find(Integer.parseInt(id));	
 			}
 		} catch (Exception e) {
-			FacesUtil.addMessageInfo("não foi possível carregar");
+			FacesUtil.addMessageInfo("não foi possível carregar.");
 		}
 	}
 	

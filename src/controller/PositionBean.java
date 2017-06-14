@@ -1,19 +1,17 @@
 package controller;
 
+import java.util.List;
 import util.FacesUtil;
 import model.Position;
 import dao.PositionDAO;
 import javax.faces.bean.ViewScoped;
-
-import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 
 @ManagedBean
 @ViewScoped
 public class PositionBean {
-	Position position = new Position();
-	PositionDAO positionDAO = new PositionDAO();
+	Position position        = new Position();
+	PositionDAO positionDAO  = new PositionDAO();
 	List<Position> positions = null;
 	String action;
 	
@@ -54,9 +52,9 @@ public class PositionBean {
 		try {
 			this.positionDAO.insert(position);
 			
-			FacesUtil.addMessageInfo("Cargo salvo com sucesso");
+			FacesUtil.addMessageInfo("Cargo salvo com sucesso.");
 		} catch (Exception e) {
-			FacesUtil.addMessageInfo("Não foi possível salvar");
+			FacesUtil.addMessageInfo("Não foi possível salvar o cargo.");
 		}
 	}
 	
@@ -66,7 +64,7 @@ public class PositionBean {
 
 			FacesUtil.addMessageInfo("Cargo alterado com sucesso");
 		} catch (Exception e) {
-			FacesUtil.addMessageInfo("Não foi possível salvar");
+			FacesUtil.addMessageInfo("Não foi possível alterar o cargo.");
 		}
 	}
 	

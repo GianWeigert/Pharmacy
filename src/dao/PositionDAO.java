@@ -1,7 +1,6 @@
 package dao;
 
 import java.util.List;
-
 import model.Position;
 import util.HibernateUtil;
 import org.hibernate.Query;
