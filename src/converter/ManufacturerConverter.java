@@ -1,12 +1,11 @@
 package converter;
 
+import model.Manufacturer;
+import dao.ManufacturerDAO;
 import javax.faces.convert.Converter;
 import javax.faces.context.FacesContext;
 import javax.faces.component.UIComponent;
 import javax.faces.convert.FacesConverter;
-
-import dao.ManufacturerDAO;
-import model.Manufacturer;
 
 @FacesConverter("manufacturerConverter")
 public class ManufacturerConverter implements Converter{

@@ -23,6 +23,8 @@
 				<p:button value="Novo" outcome="/pages/manufacturer/post.xhtml?faces-redirect=true">
 					<f:param name="action" value="new" />
 				</p:button>
+				
+				<p:separator />
 									
 				<p:dataTable emptyMessage="Nenhum registro encontrado." value="#{manufacturerBean.manufacturers}" var="manufacturer" rows="10" paginator="true">
 					<p:column headerText="Código" sortBy="#{manufacturer.id}">

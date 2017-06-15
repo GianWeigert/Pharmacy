@@ -25,6 +25,8 @@
 					<f:param name="action" value="new"/>
 				</p:button>
 			
+				<p:separator />
+			
 				<p:dataTable emptyMessage="Nenhum registro encontrado." value="#{positionBean.positions}" var="position" rows="10" paginator="true">
 					<p:column headerText="Código" sortBy="#{position.id}">
 						<h:outputText value="#{position.id}" />

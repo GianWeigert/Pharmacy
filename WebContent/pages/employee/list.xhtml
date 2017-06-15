@@ -21,9 +21,13 @@
 					</f:facet>
 				</p:toolbar>
 					
+				<p:separator />
+				
 				<p:button value="Novo" outcome="/pages/employee/post.xhtml?faces-redirect=true">
 					<f:param name="action" value="new"/>
 				</p:button>
+			
+				<p:separator />
 			
 				<p:dataTable emptyMessage="Nenhum registro encontrado." value="#{employeeBean.employees}" var="employee" rows="10" paginator="true">
 					<p:column headerText="Código" sortBy="#{employee.id}" style="width: 10%">

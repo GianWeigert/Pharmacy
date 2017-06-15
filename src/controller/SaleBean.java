@@ -1,26 +1,28 @@
 package controller;
 
-import model.Employee;
-import model.Product;
 import model.Sale;
-import model.SaleItem;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
+import model.Product;
 import java.util.List;
-
-import dao.EmployeeDAO;
-import dao.ProductDAO;
+import java.util.Date;
+import model.Employee;
+import model.SaleItem;
 import util.FacesUtil;
+import dao.ProductDAO;
+import dao.SaleDAO;
+import dao.SaleItemDAO;
+import dao.EmployeeDAO;
+import java.util.ArrayList;
+import java.math.BigDecimal;
 import javax.faces.bean.ViewScoped;
 import javax.faces.bean.ManagedBean;
 
 @ManagedBean
 @ViewScoped
 public class SaleBean {
-	List<Product> products = null;
-	ProductDAO productDAO  = new ProductDAO();
+	List<Product> products  = null;
+	ProductDAO productDAO   = new ProductDAO();
+	SaleDAO saleDao         = new SaleDAO();
+	SaleItemDAO saleItemDAO = new SaleItemDAO();
 	List<SaleItem> items;
 
 	Sale sale;
@@ -119,4 +121,25 @@ public class SaleBean {
 		
 		this.sale.setEmployee(employee);
 	}
+	
+	public void save(){
+		try {
+			Long saleId = this.saleDao.insert(this.sale);
+			 
+			for (SaleItem item : items) {
+				item.setSale(this.sale);
+				
+				this.saleItemDAO.insert(item);
+			}
+			
+			this.sale = new Sale();
+			this.sale.setTotal(new BigDecimal("0.00"));
+			this.items = new ArrayList<SaleItem>();
+			
+			FacesUtil.addMessageInfo("Venda realizada com sucesso");
+		} catch (Exception e) {
+			FacesUtil.addMessageInfo("Não foi possível realizar venda");
+		}
+	}
+	
 }
