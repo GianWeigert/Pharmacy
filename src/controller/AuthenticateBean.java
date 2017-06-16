@@ -31,16 +31,16 @@ public class AuthenticateBean {
 		try {
 			this.employee = employeeDAO.authenticate(this.employee.getCpf(), this.employee.getPassword());
 			
-			if (this.employee == null) {
-				FacesUtil.addMessageInfo("CPF ou/e senha incorretos.");
+			if (this.employee != null) {
+				return "/pages/home.xhtml?faces-redirect=true";
 			}
 			
-			return "/pages/home.xhtml?faces-redirect=true";
+			FacesUtil.addMessageInfo("CPF ou/e senha incorretos.");
 		} catch (Exception e) {
 			FacesUtil.addMessageInfo("Não foi possível listar os produtos.");
 		}
 		
-		return "";
+		return "#";
 	}
 	
 	public String exit() {
