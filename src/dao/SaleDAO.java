@@ -8,13 +8,13 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class SaleDAO {
-	public Long insert(Sale sale) {
+	public void insert(Sale sale) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		Long id = null;
 		Transaction transaction = null;
+		
 		try {
 			transaction = session.beginTransaction();
-			id = (Long) session.save(sale);
+			session.save(sale);
 			transaction.commit();
 		} catch (RuntimeException ex) {
 			if (transaction != null) {
@@ -24,8 +24,6 @@ public class SaleDAO {
 		} finally {
 			session.close();
 		}
-		
-		return id;
 	}
 	
 

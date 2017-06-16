@@ -75,4 +75,22 @@ public class EmployeeDAO {
 
 		return employees;
 	}
+	
+	public Employee authenticate(String cpf, String password) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Employee employees = null;
+
+		try {
+			Query query = session.createQuery("from Employee e where e.cpf = :cpf and e.password = :password");
+			query.setParameter("cpf", cpf);
+			query.setParameter("password", password);
+			employees = (Employee) query.uniqueResult();
+		} catch (RuntimeException ex) {
+			throw ex;
+		} finally {
+			session.close();
+		}
+
+		return employees;
+	}
 }

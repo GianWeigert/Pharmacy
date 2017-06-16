@@ -1,6 +1,7 @@
 package controller;
 
 import model.Sale;
+import dao.SaleDAO;
 import model.Product;
 import java.util.List;
 import java.util.Date;
@@ -8,13 +9,12 @@ import model.Employee;
 import model.SaleItem;
 import util.FacesUtil;
 import dao.ProductDAO;
-import dao.SaleDAO;
 import dao.SaleItemDAO;
-import dao.EmployeeDAO;
 import java.util.ArrayList;
 import java.math.BigDecimal;
 import javax.faces.bean.ViewScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 
 @ManagedBean
 @ViewScoped
@@ -24,8 +24,18 @@ public class SaleBean {
 	SaleDAO saleDao         = new SaleDAO();
 	SaleItemDAO saleItemDAO = new SaleItemDAO();
 	List<SaleItem> items;
-
 	Sale sale;
+	
+	@ManagedProperty(value = "#{authenticateBean}")
+	private AuthenticateBean authenticateBean;
+
+	public AuthenticateBean getAuthenticateBean() {
+		return authenticateBean;
+	}
+
+	public void setAuthenticateBean(AuthenticateBean authenticateBean) {
+		this.authenticateBean = authenticateBean;
+	}
 	
 	public Sale getSale() {
 		if (this.sale == null) {
@@ -115,16 +125,13 @@ public class SaleBean {
 	
 	public void loadSaleData() {
 		this.sale.setTime(new Date());
-		
-		EmployeeDAO employeeDAO = new EmployeeDAO();
-		Employee employee = employeeDAO.find(1);
-		
+		Employee employee = authenticateBean.getEmployee();
 		this.sale.setEmployee(employee);
 	}
 	
 	public void save(){
 		try {
-			Long saleId = this.saleDao.insert(this.sale);
+			this.saleDao.insert(this.sale);
 			 
 			for (SaleItem item : items) {
 				item.setSale(this.sale);

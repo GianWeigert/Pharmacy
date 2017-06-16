@@ -22,39 +22,44 @@
 		</p:layoutUnit>
 		
 		<p:layoutUnit position="west" size="250" resizable="false" closable="false" collapsed="false">
-			<h:form>
+			<h:form id="menu">
 				<p:panelMenu>
-					<p:submenu label="Cargo">
+					<p:submenu label="Cargo" rendered="#{authenticateBean.employee.position != null}">
 						<p:menuitem value="Listagem" outcome="/pages/position/list.xhtml" />
  						<p:menuitem value="Cadastrar" outcome="/pages/position/post.xhtml" >
  							<f:param name="action" value="new" />
  						</p:menuitem>						  
 	 				</p:submenu>
 				
-					<p:submenu label="Fabricante">
+					<p:submenu label="Fabricante" rendered="#{authenticateBean.employee.position != null}">
 						<p:menuitem value="Listagem" outcome="/pages/manufacturer/list.xhtml" />
  						<p:menuitem value="Cadastrar" outcome="/pages/manufacturer/post.xhtml" >
 							<f:param name="action" value="new" />					  	
  						</p:menuitem>						  
 	 				</p:submenu>
 	 				
-					<p:submenu label="Funcionário">
+					<p:submenu label="Funcionário" rendered="#{authenticateBean.employee.position != null}">
 						<p:menuitem value="Listagem" outcome="/pages/employee/list.xhtml" />
  						<p:menuitem value="Cadastrar" outcome="/pages/employee/post.xhtml" >
 							<f:param name="action" value="new" />					  	
  						</p:menuitem>						  
 	 				</p:submenu>
 	 				
-					<p:submenu label="Produto">
+					<p:submenu label="Produto" rendered="#{authenticateBean.employee.position != null}">
 						<p:menuitem value="Listagem" outcome="/pages/product/list.xhtml" />
  						<p:menuitem value="Cadastrar" outcome="/pages/product/post.xhtml" >
 							<f:param name="action" value="new" />					  	
  						</p:menuitem>						  
 	 				</p:submenu>
 	 				
-					<p:submenu label="Venda">
+					<p:submenu label="Venda" rendered="#{authenticateBean.employee.position != null}">
  						<p:menuitem value="Nova Venda" outcome="/pages/sale/post.xhtml" >
 							<f:param name="action" value="new" />					  	
+ 						</p:menuitem>						  
+	 				</p:submenu>
+	 				
+	 				<p:submenu label="Opções" rendered="#{authenticateBean.employee.position != null}">
+ 						<p:menuitem value="Sair" action="#{authenticateBean.exit}">
  						</p:menuitem>						  
 	 				</p:submenu>
 				</p:panelMenu>
