@@ -12,8 +12,10 @@ TomCat 7.0
 
 --------------------------------------
 
+Criar um banco de dados chmado pharmacy2
+
 Rodar o arquivo CreateTable que fica no pacote main  como um JavaApplication
-para criar o banco de dados.
+para criar as tabelas do banco de dados.
 
 E execultar o projeto no TomCat e logar com o usuário padrão.
 
